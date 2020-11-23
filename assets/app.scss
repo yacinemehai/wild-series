@@ -1,0 +1,15 @@
+@import "~bootstrap/scss/bootstrap";
+
+$theme-colors: (
+        "primary": #F0F0F0,
+        "secondary": #e3474b,
+);
+
+body {
+        --main: #F0F0F0;
+        --secondary: #e3474b;
+        background-color: var(--main);
+}
+
+
+
