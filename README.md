@@ -1,5 +1,5 @@
 # wild-series
-
+Les relations bidirectionnelles avec Doctrine
 https://www.loom.com/share/e428079609534df3a21398426e69731b
 
 FORM
