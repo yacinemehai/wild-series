@@ -10,3 +10,6 @@ https://www.loom.com/share/0f3c2dd0de9d4cc9b680e34282251ba7
 
 VALIDATION
 https://www.loom.com/share/51d8b652c8754e9d81710328d67755d2
+
+ManyToMany
+https://www.loom.com/share/9d24d071ab7047b785f99817a3f7db62
