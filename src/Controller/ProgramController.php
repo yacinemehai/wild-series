@@ -27,11 +27,6 @@ class ProgramController extends AbstractController
 
             $seasons = $this->getDoctrine()->getRepository(Season::class)->findBy(['program' => $program]);
 
-            if (!$program) {
-                throw $this->createNotFoundException(
-                    'No program with id : ' . $program . ' found in program\'s table.'
-                );
-            }
             return $this->render('program/show.html.twig', [
                 'program' => $program,
                 'seasons' => $seasons,
@@ -90,7 +85,7 @@ class ProgramController extends AbstractController
             $program = new Program();
             $form = $this->createForm(ProgramType::class, $program);
             $form->handleRequest($request);
-            if ($form->isSubmitted()) {
+            if ($form->isSubmitted() && $form->isValid()){
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($program);
                 $entityManager->flush();
