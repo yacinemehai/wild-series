@@ -13,3 +13,6 @@ https://www.loom.com/share/51d8b652c8754e9d81710328d67755d2
 
 ManyToMany
 https://www.loom.com/share/9d24d071ab7047b785f99817a3f7db62
+
+EntityType
+https://www.loom.com/share/5972efe572f748749319cc724fc50c98
