@@ -8,6 +8,7 @@ use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use App\Service\Slugify;
 
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
@@ -98,6 +99,12 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 
         ],
     ];
+    private $slugify;
+
+    public function __construct(slugify $slugify)
+    {
+        $this->slugify=$slugify;
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -110,6 +117,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setCountry($data['country']);
             $program->setCategoryId($this->getReference('category_' . rand(0, 4)));
             $program->setYear($data['year']);
+            $slug = $this->slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             $manager->persist($program);
             $this->addReference('program' . $i, $program);
             $i++;
