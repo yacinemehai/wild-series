@@ -23,6 +23,9 @@ https://drive.google.com/file/d/17IB3I6u2VlsiC4YqBXX4iqNyDT955niS/view?usp=shari
 Fixtures
 https://drive.google.com/file/d/1CF0LPNQLPi3OlgyeFeNyJta5G5b95wVc/view?usp=sharing
 
+SLUG
+https://drive.google.com/file/d/1bLAZNUcxfUMTCUb6NoAHtcRO2shnJVdV/view?usp=sharing
+
 
 
 
