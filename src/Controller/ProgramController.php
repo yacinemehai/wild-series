@@ -13,6 +13,7 @@ use App\Repository\ProgramRepository;
 use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,7 +32,7 @@ class ProgramController extends AbstractController
          * @Route("/", name="index")
          * @return Response A response instance
          */
-        public function index(Request $request, ProgramRepository $programRepository): Response
+        public function index(Request $request, ProgramRepository $programRepository, SessionInterface $session): Response
         {
             $form = $this->createForm(SearchProgramType::class);
             $form->handleRequest($request);
@@ -63,6 +64,8 @@ class ProgramController extends AbstractController
                 $program->setSlug($slug);
                 $entityManager->persist($program);
                 $entityManager->flush();
+
+                $this->addFlash('success', 'La série à bien été ajoutée.');
 
                 $email = (new Email())
                     ->from ($this->getParameter('mailer_from'))
