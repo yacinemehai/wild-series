@@ -18,6 +18,29 @@
             </div>
         </div>
     </div>
+    {% if app.user %}
+        <div class="media-body">
+            <h3>Ajouter un commentaire</h3>
+            {% include 'comment/_form.html.twig'%}
+        </div>
+    {% endif %}
+    <div>
+    <h3>Commentaires</h3>
+    {% for comment in episode.comments %}
+        <ul>
+            <li>{{ comment.author.email }} - {{ comment.rate }}/ 5 <br>
+                <i>{{ comment.comment }}</i>
+                <br>
+                {% if app.user == comment.author or is_granted("ROLE_ADMIN") %}
+                    {% include 'comment/_delete_form.html.twig' %}
+                {% endif %}
+            </li>
+        </ul>
+        <br>
+    {% else %}
+        Pas de commentaire pour le moment
+    {% endfor %}
+
 
 
 
