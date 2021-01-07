@@ -9,6 +9,8 @@ use App\Form\ProgramType;
 use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +34,38 @@ class ProgramController extends AbstractController
                 ->findAll();
             return $this->render('program/index.html.twig',
                 ['programs'  => $programs]);
+        }
+        /**
+         *
+         * @Route("/new", name="new")
+         */
+        public function new (Request $request, Slugify $slugify, MailerInterface $mailer) :Response
+        {
+            $program = new Program();
+            $form = $this->createForm(ProgramType::class, $program);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()){
+                $entityManager = $this->getDoctrine()->getManager();
+                $slug = $slugify->generate($program->getTitle());
+                $program->setSlug($slug);
+                $entityManager->persist($program);
+                $entityManager->flush();
+
+                $email = (new Email())
+                    ->from ($this->getParameter('mailer_from'))
+                    ->to('to@example.com')
+                    ->subject('Une nouvelle série vient d\'être publiée !')
+                    ->html($this->renderView('program/new_program_email.html.twig', ['program' => $program]));
+
+                $mailer->send($email);
+
+                return $this->redirectToRoute('program_index');
+            }
+
+            return $this->render('program/new.html.twig', [
+                "form" => $form->createView(),
+            ]);
+
         }
         /**
          * @Route("/{program}", methods={"GET"},  name="show")
@@ -76,27 +110,5 @@ class ProgramController extends AbstractController
         {
             return $this->render('/program/episode_show.html.twig',
                 ['program' => $program, 'season' => $season, 'episode' => $episode]);
-        }
-        /**
-         *
-         * @Route("/new", name="new")
-         */
-        public function new (Request $request, Slugify $slugify) :Response
-        {
-            $program = new Program();
-            $form = $this->createForm(ProgramType::class, $program);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()){
-                $entityManager = $this->getDoctrine()->getManager();
-                $slug = $slugify->generate($program->getTitle());
-                $program->setSlug($slug);
-                $entityManager->persist($program);
-                $entityManager->flush();
-                return $this->redirectToRoute('program_index');
-            }
-            return $this->render('program/new.html.twig', [
-                "form" => $form->createView(),
-            ]);
-
         }
     }
