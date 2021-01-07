@@ -26,6 +26,9 @@ https://drive.google.com/file/d/1CF0LPNQLPi3OlgyeFeNyJta5G5b95wVc/view?usp=shari
 SLUG
 https://drive.google.com/file/d/1bLAZNUcxfUMTCUb6NoAHtcRO2shnJVdV/view?usp=sharing
 
+MAILER
+https://drive.google.com/file/d/1fMuSL_DzPM2VzeWtPw47LXdeED5frtJi/view?usp=sharing
+
 
 
 
