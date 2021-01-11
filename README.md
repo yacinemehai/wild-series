@@ -29,6 +29,9 @@ https://drive.google.com/file/d/1bLAZNUcxfUMTCUb6NoAHtcRO2shnJVdV/view?usp=shari
 MAILER
 https://drive.google.com/file/d/1fMuSL_DzPM2VzeWtPw47LXdeED5frtJi/view?usp=sharing
 
+USERSMANAGER
+https://drive.google.com/file/d/1Y-7w88XR6ZRA30k9_0fScupX53T0fgg5/view?usp=sharing
+
 REQUEST
 https://drive.google.com/file/d/1SdtCYmCEuADSZVAT2a6zzJu0UfGZwfog/view?usp=sharing
 
